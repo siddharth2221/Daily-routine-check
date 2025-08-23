@@ -49,7 +49,6 @@
       <th>Worked?</th>
       <th>Satisfaction</th>
     </tr>
-    <!-- Generate 7 days -->
     <script>
       const levels = {
         "": "Select",
@@ -61,12 +60,19 @@
       for (let i = 1; i <= 7; i++) {
         document.write("<tr>");
         document.write(`<td>Day ${i}</td>`);
-        document.write(`<td><input type="checkbox"></td>`);
+        
+        // Pre-check Day 1's checkbox
+        const checkedAttr = (i === 1) ? 'checked' : '';
+        document.write(`<td><input type="checkbox" ${checkedAttr}></td>`);
+        
+        // Preselect Good for Day 1
         let selectHTML = "<td><select>";
         for (let key in levels) {
-          selectHTML += `<option value="${key}">${levels[key]}</option>`;
+          const selectedAttr = (i === 1 && key === "😊 Good") ? 'selected' : '';
+          selectHTML += `<option value="${key}" ${selectedAttr}>${levels[key]}</option>`;
         }
         selectHTML += "</select></td>";
+        
         document.write(selectHTML);
         document.write("</tr>");
       }
